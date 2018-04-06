@@ -4,7 +4,7 @@ class nodo(object):
 		self.data = data
 		self.children = []
 		self.parent = parent
-		if self.parent is not None: self.level = parent.level
+		if self.parent is not None: self.level = parent.level+1
 		else: self.level = 0
 		if parent is not None: parent.addChildren(self)
 
@@ -21,7 +21,7 @@ class nodo(object):
 		q = [self]
 		while len(q) !=0:
 			act = q.pop(0)
-			print act.data
+			print '\t'*act.level,act.data
 			for c in act.children: q.append(c)
 	"""
 		DFS-recursive(G, s):
@@ -30,7 +30,7 @@ class nodo(object):
 		            if w is not visited: DFS-recursive(G, w)
 	"""
 	def dfs(self,visited=[]):
-		print ' %s ' % self.data
+		print '\t'*self.level,'%s' % self.data
 		visited.append(self)
 		for ch in self.children:
 			if ch not in visited:
